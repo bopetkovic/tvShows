@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Alamofire
 
 extension UITextField {
-    func addBottomBorders() {
+    func addBottomBorder() {
         self.borderStyle = .none
         
         let line = CALayer()
@@ -43,12 +44,14 @@ class LoginViewController: UIViewController {
     func setupUI() {
         loginButton.layer.cornerRadius = 5.0
         
-        emailInputField.addBottomBorders()
-        passwordInputField.addBottomBorders()
+        emailInputField.addBottomBorder()
+        passwordInputField.addBottomBorder()
         
         setPasswordFieldState()
         secureTextButtonStyle()
         setRememberMeImage()
+        
+        loginButton.isEnabled = false
     }
     
     // MARK: - secure text - password field functionality
@@ -86,6 +89,40 @@ class LoginViewController: UIViewController {
             rememberMeImage.image = UIImage(named: "ic-checkbox-filled")
         } else {
             rememberMeImage.image = UIImage(named: "ic-checkbox-empty")
+        }
+    }
+    
+    // MARK: - login button
+    @IBAction func textFieldDidChange(_ sender: UITextField) {
+        if emailInputField.text!.count >= 3 && passwordInputField.text!.count >= 3 {
+            loginButton.isEnabled = true
+        } else {
+            loginButton.isEnabled = false
+        }
+    }
+    
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        authorizeUser()
+    }
+    
+    // MARK: - Alamofire request
+    func authorizeUser() {
+        let requestParameters: Parameters = ["email" : emailInputField.text!, "password" : passwordInputField.text!]
+        
+        let requestUrl = "https://api.infinum.academy/api/users/sessions"
+        
+        Alamofire.request(requestUrl, method: .post, parameters: requestParameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+            print("This is response status code: \(response.response?.statusCode)")
+            let responseCode = response.response?.statusCode
+            
+            if responseCode == 200 {
+                self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+            } else {
+                let alert = UIAlertController(title: "Wrong credentials", message: "Sorry! Email or password is incorrct. Please try again!", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 }

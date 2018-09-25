@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE83C8366AADA31BEE558398 /* Pods_TvShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8344668DAD67268DF99ABA4F /* Pods_TvShows.framework */; };
 		BE7909C521597CF900E99BD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7909C421597CF900E99BD0 /* AppDelegate.swift */; };
 		BE7909C721597CF900E99BD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7909C621597CF900E99BD0 /* ViewController.swift */; };
 		BE7909CA21597CF900E99BD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7909C821597CF900E99BD0 /* Main.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4BE84159A7AAB339F47A512E /* Pods-TvShows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvShows.release.xcconfig"; path = "Pods/Target Support Files/Pods-TvShows/Pods-TvShows.release.xcconfig"; sourceTree = "<group>"; };
+		8344668DAD67268DF99ABA4F /* Pods_TvShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TvShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7909C121597CF900E99BD0 /* TvShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TvShows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7909C421597CF900E99BD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE7909C621597CF900E99BD0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		BE7909CE21597CFB00E99BD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE7909D021597CFB00E99BD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE7909D62159852600E99BD0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D5CA8A6F3C601FDA209AFA39 /* Pods-TvShows.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TvShows.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TvShows/Pods-TvShows.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE83C8366AADA31BEE558398 /* Pods_TvShows.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00F8ACE138AAEB8750E1B4EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D5CA8A6F3C601FDA209AFA39 /* Pods-TvShows.debug.xcconfig */,
+				4BE84159A7AAB339F47A512E /* Pods-TvShows.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BE7909B821597CF800E99BD0 = {
 			isa = PBXGroup;
 			children = (
 				BE7909C321597CF900E99BD0 /* TvShows */,
 				BE7909C221597CF900E99BD0 /* Products */,
+				00F8ACE138AAEB8750E1B4EE /* Pods */,
+				CE4F9206678E8B4845145BBB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +72,47 @@
 		BE7909C321597CF900E99BD0 /* TvShows */ = {
 			isa = PBXGroup;
 			children = (
+				BE790A30215AD6AA00E99BD0 /* Views */,
+				BE790A2F215AD6A200E99BD0 /* Models */,
+				BE790A2E215AD68900E99BD0 /* Controllers */,
 				BE7909C421597CF900E99BD0 /* AppDelegate.swift */,
-				BE7909C621597CF900E99BD0 /* ViewController.swift */,
-				BE7909C821597CF900E99BD0 /* Main.storyboard */,
-				BE7909D62159852600E99BD0 /* LoginViewController.swift */,
 				BE7909CB21597CFB00E99BD0 /* Assets.xcassets */,
-				BE7909CD21597CFB00E99BD0 /* LaunchScreen.storyboard */,
 				BE7909D021597CFB00E99BD0 /* Info.plist */,
 			);
 			path = TvShows;
+			sourceTree = "<group>";
+		};
+		BE790A2E215AD68900E99BD0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE7909C621597CF900E99BD0 /* ViewController.swift */,
+				BE7909D62159852600E99BD0 /* LoginViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BE790A2F215AD6A200E99BD0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BE790A30215AD6AA00E99BD0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE7909C821597CF900E99BD0 /* Main.storyboard */,
+				BE7909CD21597CFB00E99BD0 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE4F9206678E8B4845145BBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8344668DAD67268DF99ABA4F /* Pods_TvShows.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +122,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE7909D321597CFB00E99BD0 /* Build configuration list for PBXNativeTarget "TvShows" */;
 			buildPhases = (
+				BBF678A51FB0480796D83654 /* [CP] Check Pods Manifest.lock */,
 				BE7909BD21597CF900E99BD0 /* Sources */,
 				BE7909BE21597CF900E99BD0 /* Frameworks */,
 				BE7909BF21597CF900E99BD0 /* Resources */,
+				0EB5A3A9D179811D94862F54 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +181,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0EB5A3A9D179811D94862F54 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TvShows/Pods-TvShows-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TvShows/Pods-TvShows-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBF678A51FB0480796D83654 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TvShows-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE7909BD21597CF900E99BD0 /* Sources */ = {
@@ -281,6 +370,7 @@
 		};
 		BE7909D421597CFB00E99BD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5CA8A6F3C601FDA209AFA39 /* Pods-TvShows.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +390,7 @@
 		};
 		BE7909D521597CFB00E99BD0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BE84159A7AAB339F47A512E /* Pods-TvShows.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -25,6 +25,7 @@ extension UITextField {
 class LoginViewController: UIViewController {
     var secureTextEntry: Bool = true
     var rememberMe: Bool = false
+    var authenticatedUser: Bool = false
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailInputField: UITextField!
@@ -37,11 +38,16 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        redirectLoggedUser()
         setupUI()
+        setRememberMeValueInUserDefaults()
+        setUserAuthenticationStatusInUserDefaults()
     }
     
     // MARK: - setupUI
     func setupUI() {
+        navigationItem.hidesBackButton = true
+        
         loginButton.layer.cornerRadius = 5.0
         
         emailInputField.addBottomBorder()
@@ -82,6 +88,11 @@ class LoginViewController: UIViewController {
         rememberMe = !rememberMe
         setRememberMeImage()
 //        print("Remember me value is \(rememberMe)")
+        setRememberMeValueInUserDefaults()
+    }
+    
+    func setRememberMeValueInUserDefaults() {
+        UserDefaults.standard.set(rememberMe, forKey: "rememberMe")
     }
     
     func setRememberMeImage() {
@@ -117,11 +128,26 @@ class LoginViewController: UIViewController {
             
             if responseCode == 200 {
                 self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+                self.authenticatedUser = true
+                self.setUserAuthenticationStatusInUserDefaults()
             } else {
                 let alert = UIAlertController(title: "Wrong credentials", message: "Sorry! Email or password is incorrct. Please try again!", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Close", style: .cancel, handler: nil)
                 alert.addAction(action)
                 self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func setUserAuthenticationStatusInUserDefaults() {
+        UserDefaults.standard.set(authenticatedUser, forKey: "authenticatedUser")
+    }
+    
+    // MARK: - redirect if user is logged in
+    func redirectLoggedUser() {
+        if UserDefaults.standard.bool(forKey: "authenticatedUser") == true && UserDefaults.standard.bool(forKey: "rememberMe") == true {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "showHomeScreen", sender: self)
             }
         }
     }

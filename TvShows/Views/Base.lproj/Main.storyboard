@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-login-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Wf1-0O-yAd">
-                                <rect key="frame" x="150" y="129" width="75" height="80"/>
+                                <rect key="frame" x="150" y="85" width="75" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="b3D-u6-VG4"/>
                                     <constraint firstAttribute="height" constant="80" id="jbI-6q-rNL"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FzB-ba-me7">
-                                <rect key="frame" x="15" y="264" width="345" height="260"/>
+                                <rect key="frame" x="15" y="220" width="345" height="260"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdN-eP-ycj">
                                         <rect key="frame" x="0.0" y="0.0" width="31" height="15"/>
@@ -162,27 +162,53 @@
                         <outlet property="rememberMeButton" destination="q2f-sx-P9e" id="djJ-b4-6wG"/>
                         <outlet property="rememberMeImage" destination="ktU-Rq-k7Y" id="eGz-Dv-fUB"/>
                         <outlet property="secureTextEntryButton" destination="Xrk-US-vkm" id="D4b-KK-0P4"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showHomeScreen" id="XLg-FL-g7j"/>
+                        <segue destination="2Mr-tC-1N0" kind="show" identifier="showHomeScreen" id="Rg6-ho-a2D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bud-fq-PS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="519.20000000000005" y="46.326836581709152"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Movies List View Controller-->
+        <scene sceneID="wWr-f1-X3S">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TvShows" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="2Mr-tC-1N0" customClass="MoviesListViewController" customModule="TvShows" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KPp-fv-x2i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="69S-ZS-30P">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Nok-LQ-Ksd">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nok-LQ-Ksd" id="YB3-YB-T6z">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="69S-ZS-30P" firstAttribute="top" secondItem="ahX-nP-Ysu" secondAttribute="top" id="6Rp-Xd-3C7"/>
+                            <constraint firstItem="69S-ZS-30P" firstAttribute="leading" secondItem="ahX-nP-Ysu" secondAttribute="leading" id="TQs-1c-H0k"/>
+                            <constraint firstItem="ahX-nP-Ysu" firstAttribute="bottom" secondItem="69S-ZS-30P" secondAttribute="bottom" id="aea-m3-ZMz"/>
+                            <constraint firstItem="ahX-nP-Ysu" firstAttribute="trailing" secondItem="69S-ZS-30P" secondAttribute="trailing" id="rDu-fb-BzT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ahX-nP-Ysu"/>
                     </view>
+                    <connections>
+                        <outlet property="moviesTableView" destination="69S-ZS-30P" id="bJH-yY-0SQ"/>
+                        <segue destination="B3u-oH-p0B" kind="show" identifier="logOut" id="OXy-jw-CMZ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T7r-oV-geb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1388" y="45.42728635682159"/>
+            <point key="canvasLocation" x="1258" y="46"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3W1-Pd-qqd">
@@ -206,4 +232,7 @@
     <resources>
         <image name="img-login-logo" width="75" height="80"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="OXy-jw-CMZ"/>
+    </inferredMetricsTieBreakers>
 </document>

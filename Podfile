@@ -7,4 +7,5 @@ target 'TvShows' do
 
   # Pods for TvShows
     pod 'Alamofire', '~> 4.7'
+    pod 'CodableAlamofire'
 end

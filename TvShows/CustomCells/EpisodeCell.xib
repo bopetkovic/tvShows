@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="episodeCell" rowHeight="62" id="KGk-i7-Jjw" customClass="EpisodeCell" customModule="TvShows" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="61.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ktw-v9-MNz">
+                        <rect key="frame" x="291" y="19" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="3Ac-gn-EmK"/>
+                            <constraint firstAttribute="height" constant="24" id="ARV-9X-Jmb"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOL-YT-INI">
+                        <rect key="frame" x="0.0" y="20" width="65" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="Fq9-zm-wdS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pr-RW-Vgd">
+                        <rect key="frame" x="75" y="20" width="206" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="206" id="3El-9Q-ZOS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="1pr-RW-Vgd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5hd-df-2hB"/>
+                    <constraint firstAttribute="trailing" secondItem="Ktw-v9-MNz" secondAttribute="trailing" constant="5" id="Ayf-p1-1iF"/>
+                    <constraint firstItem="UOL-YT-INI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KXf-Tr-cc7"/>
+                    <constraint firstItem="Ktw-v9-MNz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LVi-xl-4xN"/>
+                    <constraint firstItem="1pr-RW-Vgd" firstAttribute="leading" secondItem="UOL-YT-INI" secondAttribute="trailing" constant="10" id="R0n-iD-IQR"/>
+                    <constraint firstItem="UOL-YT-INI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="g5A-4Y-7jx"/>
+                    <constraint firstItem="Ktw-v9-MNz" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1pr-RW-Vgd" secondAttribute="trailing" constant="10" id="iIe-r2-D8a"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="arrowImage" destination="Ktw-v9-MNz" id="Rse-9m-vOJ"/>
+                <outlet property="episodeCounter" destination="UOL-YT-INI" id="h7z-WI-xh2"/>
+                <outlet property="episodeTitle" destination="1pr-RW-Vgd" id="NBh-L0-973"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

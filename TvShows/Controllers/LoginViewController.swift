@@ -8,20 +8,6 @@
 import UIKit
 import Alamofire
 
-extension UITextField {
-    func addBottomBorder() {
-        self.borderStyle = .none
-        
-        let line = CALayer()
-        let width = CGFloat(1.0)
-        line.borderColor = UIColor(red: 86.7/255.0, green: 87.1/255.0, blue: 87.5/255.0, alpha: 0.5).cgColor
-        line.frame = CGRect(x: 0, y: self.frame.size.height - 1.0, width: self.frame.size.width, height: 1.0)
-        line.borderWidth = width
-        self.layer.addSublayer(line)
-        self.layer.masksToBounds = true
-    }
-}
-
 class LoginViewController: UIViewController {
     var secureTextEntry: Bool = true
     var rememberMe: Bool = false
@@ -42,6 +28,9 @@ class LoginViewController: UIViewController {
         setupUI()
         setRememberMeValueInUserDefaults()
         setUserAuthenticationStatusInUserDefaults()
+        
+        print("Remember me: \(rememberMe)")
+        print("User: \(authenticatedUser)")
     }
     
     // MARK: - setupUI
@@ -92,7 +81,10 @@ class LoginViewController: UIViewController {
     }
     
     func setRememberMeValueInUserDefaults() {
-        UserDefaults.standard.set(rememberMe, forKey: "rememberMe")
+        if UserDefaults.standard.bool(forKey: "rememberMe") == false && rememberMe == true {
+            UserDefaults.standard.set(true, forKey: "rememberMe")
+        }
+        print("rememberMe value \(UserDefaults.standard.bool(forKey: "rememberMe"))")
     }
     
     func setRememberMeImage() {
@@ -122,8 +114,13 @@ class LoginViewController: UIViewController {
         
         let requestUrl = "https://api.infinum.academy/api/users/sessions"
         
-        Alamofire.request(requestUrl, method: .post, parameters: requestParameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-            print("This is response status code: \(response.response?.statusCode)")
+        Alamofire.request(
+                requestUrl,
+                method: .post,
+                parameters: requestParameters,
+                encoding: JSONEncoding.default
+            ).responseJSON { (response) in
+            
             let responseCode = response.response?.statusCode
             
             if responseCode == 200 {
@@ -140,7 +137,9 @@ class LoginViewController: UIViewController {
     }
     
     func setUserAuthenticationStatusInUserDefaults() {
-        UserDefaults.standard.set(authenticatedUser, forKey: "authenticatedUser")
+        if UserDefaults.standard.bool(forKey: "authenticatedUser") == false && authenticatedUser == true {
+            UserDefaults.standard.set(authenticatedUser, forKey: "authenticatedUser")
+        }
     }
     
     // MARK: - redirect if user is logged in
@@ -150,5 +149,19 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "showHomeScreen", sender: self)
             }
         }
+    }
+}
+
+extension UITextField {
+    func addBottomBorder() {
+        self.borderStyle = .none
+        
+        let line = CALayer()
+        let width = CGFloat(1.0)
+        line.borderColor = UIColor(red: 86.7/255.0, green: 87.1/255.0, blue: 87.5/255.0, alpha: 0.5).cgColor
+        line.frame = CGRect(x: 0, y: self.frame.size.height - 1.0, width: self.frame.size.width, height: 1.0)
+        line.borderWidth = width
+        self.layer.addSublayer(line)
+        self.layer.masksToBounds = true
     }
 }

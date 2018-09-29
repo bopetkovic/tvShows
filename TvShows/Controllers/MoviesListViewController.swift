@@ -9,10 +9,11 @@ import UIKit
 import Alamofire
 import CodableAlamofire
 
-class MoviesListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MoviesListViewController: UIViewController {
     
     let baseUrlString: String = "https://api.infinum.academy"
     var moviesList: [Movie] = [Movie]()
+    var showId: String?
 
     @IBOutlet weak var moviesTableView: UITableView!
     
@@ -40,9 +41,23 @@ class MoviesListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func setupUI() {
+        // removes bottom border from cell
+        moviesTableView.separatorStyle = .none
+        
+        // hide back button
         navigationItem.hidesBackButton = true
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic-logout"), style: .plain, target: self, action: #selector(logOut))
+        // set logOut button
+        let buttonImage = UIImage(named: "ic-logout")?.withRenderingMode(.alwaysOriginal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(logOut))
+        
+        // set app title
+        let appTitle = UILabel()
+        appTitle.text = "Shows"
+        appTitle.font = UIFont(name: appTitle.font.fontName, size: 22.0)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: appTitle)
+
+        NavigationControllerHelper.setTransparentHeaders(navigationController: (navigationController)!)
     }
     
     func collectMovies() {
@@ -72,6 +87,15 @@ class MoviesListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails" {
+            let vc = segue.destination as! ShowViewController
+            vc.showId = showId
+        }
+    }
+}
+
+extension MoviesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moviesList.count
     }
@@ -81,14 +105,18 @@ class MoviesListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = moviesTableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MoviesListCell
         cell.movieTitle.text = moviesList[indexPath.row].title
         
-        let imageUrl = URL(string: "\(baseUrlString)\(moviesList[indexPath.row].imageUrl)")
-        let data = try? Data(contentsOf: imageUrl!)
-        cell.movieImage.image = UIImage(data: data!)
+        let data = ImageHelper.createImageData(imageId: moviesList[indexPath.row].imageUrl)
+        cell.movieImage.image = UIImage(data: data)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showId = moviesList[indexPath.row].id
+        performSegue(withIdentifier: "showDetails", sender: self)
     }
 }

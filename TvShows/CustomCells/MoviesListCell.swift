@@ -14,13 +14,16 @@ class MoviesListCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        setBorderAroundImage()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    func setBorderAroundImage() {
+        movieImage.layer.cornerRadius = 5.0
+        movieImage.layer.masksToBounds = true
+    }
 }

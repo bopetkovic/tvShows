@@ -21,6 +21,7 @@ class ShowViewController: UIViewController {
     @IBOutlet weak var showTitle: UILabel!
     @IBOutlet weak var showDescription: UITextView!
     @IBOutlet weak var episodesNumber: UILabel!
+    @IBOutlet weak var addEpisodeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +41,21 @@ class ShowViewController: UIViewController {
         episodesTableView.separatorStyle = .none
         
         NavigationControllerHelper.setTransparentHeaders(navigationController: (navigationController)!)
-//        showDescription.translatesAutoresizingMaskIntoConstraints = true
-//        showDescription.sizeToFit()
-//        showDescription.isScrollEnabled = false
+
+        let backButtonImage = UIImage(named: "ic-navigate-back")?.withRenderingMode(.alwaysOriginal)
+        self.navigationController?.navigationBar.backIndicatorImage = backButtonImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
+        // addEpisode button
+        let episodeButtonImage = UIImage(named: "ic-fab-button")
+        addEpisodeButton.setBackgroundImage(episodeButtonImage, for: .normal)
+        addEpisodeButton.setTitle("", for: .normal)
+        
+        // textView auto height
+        showDescription.delegate = self
     }
     
     func populateInterface() {
@@ -98,6 +111,18 @@ class ShowViewController: UIViewController {
             self.episodesTableView.reloadData()
         }
     }
+    
+    @IBAction func moveToAddEpisode(_ sender: UIButton) {
+        performSegue(withIdentifier: "addEpisode", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addEpisode" {
+            let vc = segue.destination as! AddEpisodeViewController
+            print("This is show id: \(showId!)")
+            vc.showId = showId!
+        }
+    }
 }
 
 // MARK: - table setup
@@ -119,5 +144,14 @@ extension ShowViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 62.0
+    }
+}
+
+extension ShowViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: showDescription.frame.size.width, height: .infinity)
+        let newSize = showDescription.sizeThatFits(size)
+        showDescription.frame.size = CGSize(width: newSize.width, height: newSize.height)
+        showDescription.isScrollEnabled = false
     }
 }

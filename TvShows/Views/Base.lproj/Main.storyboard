@@ -341,6 +341,7 @@
                         <outlet property="showImage" destination="xwG-9o-w9w" id="dgy-A7-aEX"/>
                         <outlet property="showTitle" destination="BdE-n9-NX0" id="biN-hc-aTi"/>
                         <segue destination="wNk-Uf-B4G" kind="show" identifier="addEpisode" id="BfT-Q8-wYD"/>
+                        <segue destination="XMV-V0-ZXg" kind="show" identifier="showEpisode" id="z82-07-6az"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGA-uL-p1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -426,6 +427,80 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KY7-vT-n0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3071" y="46"/>
+        </scene>
+        <!--Episode View Controller-->
+        <scene sceneID="cPB-6Q-o5c">
+            <objects>
+                <viewController id="XMV-V0-ZXg" customClass="EpisodeViewController" customModule="TvShows" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F99-Pv-rBj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UOp-vI-1YA">
+                                <rect key="frame" x="0.0" y="64" width="375" height="340"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="340" id="YoS-Zz-2cu"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBZ-9j-1Mz">
+                                <rect key="frame" x="25" y="419" width="325" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S8 Ep2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLX-JU-RCY">
+                                <rect key="frame" x="25" y="465" width="325" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.45882352941176469" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="J34-rw-Eg7">
+                                <rect key="frame" x="25" y="501" width="325" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="m8Z-fd-3bF"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YB-Ef-Re5">
+                                <rect key="frame" x="25" y="591" width="75" height="30"/>
+                                <state key="normal" title="Comments">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qLX-JU-RCY" firstAttribute="top" secondItem="lBZ-9j-1Mz" secondAttribute="bottom" constant="12" id="2ax-E7-tUM"/>
+                            <constraint firstItem="J34-rw-Eg7" firstAttribute="leading" secondItem="IZd-eN-Dfa" secondAttribute="leading" constant="25" id="GiY-h4-0Bm"/>
+                            <constraint firstItem="UOp-vI-1YA" firstAttribute="leading" secondItem="IZd-eN-Dfa" secondAttribute="leading" id="L25-VR-LTv"/>
+                            <constraint firstItem="7YB-Ef-Re5" firstAttribute="leading" secondItem="IZd-eN-Dfa" secondAttribute="leading" constant="25" id="Nok-dS-5eg"/>
+                            <constraint firstItem="UOp-vI-1YA" firstAttribute="top" secondItem="IZd-eN-Dfa" secondAttribute="top" id="Rn6-kD-7cs"/>
+                            <constraint firstItem="lBZ-9j-1Mz" firstAttribute="top" secondItem="UOp-vI-1YA" secondAttribute="bottom" constant="15" id="WbU-Wa-aWJ"/>
+                            <constraint firstItem="IZd-eN-Dfa" firstAttribute="trailing" secondItem="lBZ-9j-1Mz" secondAttribute="trailing" constant="25" id="dt0-b0-Mt7"/>
+                            <constraint firstItem="IZd-eN-Dfa" firstAttribute="trailing" secondItem="qLX-JU-RCY" secondAttribute="trailing" constant="25" id="e3V-w1-0pG"/>
+                            <constraint firstItem="7YB-Ef-Re5" firstAttribute="top" secondItem="J34-rw-Eg7" secondAttribute="bottom" constant="30" id="jl4-Za-b8s"/>
+                            <constraint firstItem="lBZ-9j-1Mz" firstAttribute="leading" secondItem="IZd-eN-Dfa" secondAttribute="leading" constant="25" id="q1b-LF-gTj"/>
+                            <constraint firstItem="qLX-JU-RCY" firstAttribute="leading" secondItem="IZd-eN-Dfa" secondAttribute="leading" constant="25" id="rHh-sz-Xiu"/>
+                            <constraint firstItem="IZd-eN-Dfa" firstAttribute="trailing" secondItem="J34-rw-Eg7" secondAttribute="trailing" constant="25" id="ufJ-LY-4Zf"/>
+                            <constraint firstItem="IZd-eN-Dfa" firstAttribute="trailing" secondItem="UOp-vI-1YA" secondAttribute="trailing" id="w1w-bl-Kcz"/>
+                            <constraint firstItem="J34-rw-Eg7" firstAttribute="top" secondItem="qLX-JU-RCY" secondAttribute="bottom" constant="15" id="ygQ-2z-A6x"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IZd-eN-Dfa"/>
+                    </view>
+                    <connections>
+                        <outlet property="commentsButton" destination="7YB-Ef-Re5" id="fgE-4b-Jzx"/>
+                        <outlet property="episodeCount" destination="qLX-JU-RCY" id="qLQ-yW-Xeh"/>
+                        <outlet property="episodeDescription" destination="J34-rw-Eg7" id="dYj-3X-hf5"/>
+                        <outlet property="episodeImage" destination="UOp-vI-1YA" id="Jqj-3L-eVj"/>
+                        <outlet property="episodeTitle" destination="lBZ-9j-1Mz" id="uWr-qy-c51"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aHn-HB-cnr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2284" y="761"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3W1-Pd-qqd">

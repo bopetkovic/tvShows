@@ -14,6 +14,7 @@ class ShowViewController: UIViewController {
     let showBaseUrl = "https://api.infinum.academy/api/shows/"
     var chosenShow: ShowDetails?
     var showId: String?
+    var episodeId: String?
     var episodesArray: [Episode] = [Episode]()
 
     @IBOutlet weak var episodesTableView: UITableView!
@@ -122,6 +123,11 @@ class ShowViewController: UIViewController {
             print("This is show id: \(showId!)")
             vc.showId = showId!
         }
+        
+        if segue.identifier == "showEpisode" {
+            let vc = segue.destination as! EpisodeViewController
+            vc.episodeId = episodeId
+        }
     }
 }
 
@@ -144,6 +150,12 @@ extension ShowViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 62.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        episodeId = episodesArray[indexPath.row].id
+        print("This is episode id \(episodeId!)")
+        performSegue(withIdentifier: "showEpisode", sender: self)
     }
 }
 

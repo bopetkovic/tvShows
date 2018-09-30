@@ -20,7 +20,7 @@ class ShowViewController: UIViewController {
     @IBOutlet weak var episodesTableView: UITableView!
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var showTitle: UILabel!
-    @IBOutlet weak var showDescription: UITextView!
+    @IBOutlet weak var showDescription: UILabel!
     @IBOutlet weak var episodesNumber: UILabel!
     @IBOutlet weak var addEpisodeButton: UIButton!
     
@@ -54,9 +54,6 @@ class ShowViewController: UIViewController {
         let episodeButtonImage = UIImage(named: "ic-fab-button")
         addEpisodeButton.setBackgroundImage(episodeButtonImage, for: .normal)
         addEpisodeButton.setTitle("", for: .normal)
-        
-        // textView auto height
-        showDescription.delegate = self
     }
     
     func populateInterface() {
@@ -156,14 +153,5 @@ extension ShowViewController: UITableViewDelegate, UITableViewDataSource {
         episodeId = episodesArray[indexPath.row].id
         print("This is episode id \(episodeId!)")
         performSegue(withIdentifier: "showEpisode", sender: self)
-    }
-}
-
-extension ShowViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        let size = CGSize(width: showDescription.frame.size.width, height: .infinity)
-        let newSize = showDescription.sizeThatFits(size)
-        showDescription.frame.size = CGSize(width: newSize.width, height: newSize.height)
-        showDescription.isScrollEnabled = false
     }
 }

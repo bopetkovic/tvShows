@@ -10,14 +10,14 @@ import Alamofire
 import CodableAlamofire
 
 class EpisodeViewController: UIViewController {
+    var episodeId: String?
+    var baseUrl = "https://api.infinum.academy/api/episodes/"
+    
     @IBOutlet weak var episodeImage: UIImageView!
     @IBOutlet weak var episodeTitle: UILabel!
     @IBOutlet weak var episodeCount: UILabel!
-    @IBOutlet weak var episodeDescription: UITextView!
+    @IBOutlet weak var episodeDescription: UILabel!
     @IBOutlet weak var commentsButton: UIButton!
-    
-    var episodeId: String?
-    var baseUrl = "https://api.infinum.academy/api/episodes/"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,16 @@ class EpisodeViewController: UIViewController {
 
     func fetchEpisodeDetails() {
         let url = "\(baseUrl)\(episodeId!)"
-        Alamofire.request(url, method: .get, parameters: [:], encoding: JSONEncoding.default).validate().responseDecodableObject(keyPath: "data", decoder: JSONDecoder()) { (response: DataResponse<EpisodeDetails>) in
+        Alamofire.request(
+                url,
+                method: .get,
+                parameters: [:],
+                encoding: JSONEncoding.default)
+            .validate()
+            .responseDecodableObject(
+                keyPath: "data",
+                decoder: JSONDecoder()
+            ) { (response: DataResponse<EpisodeDetails>) in
 //            print("This is response: \(response)")
 //            print("This is episode details reponse: \(response.result.value)")
             
@@ -39,6 +48,17 @@ class EpisodeViewController: UIViewController {
             self.episodeCount.text = "S\((responseObject?.season)!) Ep\((responseObject?.episodeNumber)!)"
             
             self.episodeDescription.text = responseObject?.description
+        }
+    }
+    
+    @IBAction func showComments(_ sender: UIButton) {
+        performSegue(withIdentifier: "showComments", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showComments" {
+            let vc = segue.destination as! CommentsViewController
+            vc.episodeId = episodeId!
         }
     }
 }

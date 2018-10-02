@@ -15,7 +15,12 @@ class CommentsViewController: UIViewController {
     var episodeId: String?
     var commentsArray: [Comment] = [Comment]()
 
+    @IBOutlet weak var enterCommentWrapper: UIView!
+    @IBOutlet weak var commentFieldWrapper: UIView!
     @IBOutlet weak var commentsTableView: UITableView!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var postCommentButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +31,26 @@ class CommentsViewController: UIViewController {
         
         navigationItem.title = "Comments"
         
+        setupUI()
+        
         fetchComments()
+    }
+    
+    func setupUI() {
+        let grayColor: UIColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 237.0/255.0, alpha: 1.0)
+        let borderTop = UIView()
+        borderTop.backgroundColor = grayColor
+        borderTop.frame = CGRect(x: 0, y: 0, width: enterCommentWrapper.frame.size.width, height: 1)
+        enterCommentWrapper.addSubview(borderTop)
+        
+        profileImage.layer.cornerRadius = 20
+        profileImage.backgroundColor = grayColor
+        
+        commentFieldWrapper.layer.cornerRadius = 22
+        commentFieldWrapper.layer.masksToBounds = true
+        commentFieldWrapper.layer.shouldRasterize = true
+        commentFieldWrapper.layer.borderWidth = 1.0
+        commentFieldWrapper.layer.borderColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 237.0/255.0, alpha: 1.0).cgColor
     }
     
     func fetchComments() {
@@ -52,6 +76,11 @@ class CommentsViewController: UIViewController {
                 
             self.commentsTableView.reloadData()
         }
+    }
+    
+    @IBAction func sendComment(_ sender: UIButton) {
+        let comment = commentTextField.text!
+        print("Comment is: \(comment)")
     }
 }
 

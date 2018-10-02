@@ -31,7 +31,6 @@ class MoviesListViewController: UIViewController {
         
         collectMovies()
         setupUI()
-        print("----Movies list count is: \(moviesList.count)")
     }
 
     @objc func logOut() {
@@ -88,6 +87,15 @@ class MoviesListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backButtonImage = UIImage(named: "ic-navigate-back")?.withRenderingMode(.alwaysOriginal)
+        self.navigationController?.navigationBar.backIndicatorImage = backButtonImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+//        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        navigationItem.backBarButtonItem = backButton
+        
+        
         if segue.identifier == "showDetails" {
             let vc = segue.destination as! ShowViewController
             vc.showId = showId

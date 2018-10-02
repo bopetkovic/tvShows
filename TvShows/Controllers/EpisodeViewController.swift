@@ -36,9 +36,7 @@ class EpisodeViewController: UIViewController {
                 keyPath: "data",
                 decoder: JSONDecoder()
             ) { (response: DataResponse<EpisodeDetails>) in
-//            print("This is response: \(response)")
-//            print("This is episode details reponse: \(response.result.value)")
-            
+
             let responseObject = response.result.value
             let imageData = ImageHelper.createImageData(imageId: (responseObject?.imageUrl)!)
             self.episodeImage.image = UIImage(data: imageData)
@@ -59,6 +57,10 @@ class EpisodeViewController: UIViewController {
         if segue.identifier == "showComments" {
             let vc = segue.destination as! CommentsViewController
             vc.episodeId = episodeId!
+            
+            let backButton = UIBarButtonItem()
+            backButton.title = ""
+            navigationItem.backBarButtonItem = backButton
         }
     }
 }

@@ -24,9 +24,12 @@ class AddEpisodeViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func setupUI() {
+        let buttonColor: UIColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 147.0/255.0, alpha: 1.0)
         navigationItem.title = "Add episode"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addEpisode))
+        navigationItem.rightBarButtonItem?.tintColor = buttonColor
+        navigationItem.leftBarButtonItem?.tintColor = buttonColor
         
         showCover.isHidden = true
         uploadPhotoButton.isHidden = false

@@ -23,6 +23,7 @@ class ShowViewController: UIViewController {
     @IBOutlet weak var showDescription: UILabel!
     @IBOutlet weak var episodesNumber: UILabel!
     @IBOutlet weak var addEpisodeButton: UIButton!
+    @IBOutlet weak var tableHeader: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +43,8 @@ class ShowViewController: UIViewController {
         episodesTableView.separatorStyle = .none
         
         NavigationControllerHelper.setTransparentHeaders(navigationController: (navigationController)!)
-
-        let backButtonImage = UIImage(named: "ic-navigate-back")?.withRenderingMode(.alwaysOriginal)
-        self.navigationController?.navigationBar.backIndicatorImage = backButtonImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
+        showDescription.sizeToFit()
         // addEpisode button
         let episodeButtonImage = UIImage(named: "ic-fab-button")
         addEpisodeButton.setBackgroundImage(episodeButtonImage, for: .normal)
@@ -95,8 +90,7 @@ class ShowViewController: UIViewController {
                 keyPath: "data",
                 decoder: JSONDecoder()
             ) { (response: DataResponse<[Episode]>) in
-//            print(response)
-//            print(response.result.value)
+
             let episodes = response.result.value
             
             self.episodesArray = [Episode]()
@@ -115,15 +109,23 @@ class ShowViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backButton = UIBarButtonItem()
+        
         if segue.identifier == "addEpisode" {
             let vc = segue.destination as! AddEpisodeViewController
-            print("This is show id: \(showId!)")
             vc.showId = showId!
+            
+            backButton.title = "Cancel"
+            backButton.tintColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 147.0/255.0, alpha: 1.0)
+            navigationItem.backBarButtonItem = backButton
         }
         
         if segue.identifier == "showEpisode" {
             let vc = segue.destination as! EpisodeViewController
             vc.episodeId = episodeId
+            
+            backButton.title = ""
+            navigationItem.backBarButtonItem = backButton
         }
     }
 }

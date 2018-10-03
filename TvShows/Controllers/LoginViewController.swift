@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
     var secureTextEntry: Bool = true
     var rememberMe: Bool = false
     var authenticatedUser: Bool = false
+    var userEmail: String = ""
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailInputField: UITextField!
@@ -105,6 +106,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
+        userEmail = emailInputField.text!
+        UserDefaults.standard.set(userEmail, forKey: "userEmail")
+        
         authorizeUser()
     }
     

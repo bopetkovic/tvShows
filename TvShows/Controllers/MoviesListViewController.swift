@@ -37,6 +37,7 @@ class MoviesListViewController: UIViewController {
         performSegue(withIdentifier: "logOut", sender: self)
         UserDefaults.standard.set(false, forKey: "rememberMe")
         UserDefaults.standard.set(false, forKey: "authenticatedUser")
+        UserDefaults.standard.set("", forKey: "userEmail")
     }
     
     func setupUI() {

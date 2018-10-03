@@ -563,6 +563,7 @@
                                     <constraint firstAttribute="trailing" secondItem="o0G-5s-vQC" secondAttribute="trailing" constant="16" id="MOL-Mz-1sd"/>
                                     <constraint firstItem="o0G-5s-vQC" firstAttribute="centerY" secondItem="w9w-0B-gdb" secondAttribute="centerY" id="RTI-T0-ZiN"/>
                                     <constraint firstItem="o0G-5s-vQC" firstAttribute="leading" secondItem="6Va-UQ-YBX" secondAttribute="trailing" constant="16" id="hGI-U0-Lck"/>
+                                    <constraint firstAttribute="bottom" secondItem="o0G-5s-vQC" secondAttribute="bottom" constant="6" id="kyZ-bY-l63"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QCZ-4V-bjQ">

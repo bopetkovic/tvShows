@@ -11,7 +11,7 @@ import CodableAlamofire
 
 class CommentsViewController: UIViewController {
     
-    let baseUrl = "https://api.infinum.academy/api/episodes/"
+    let baseUrl = "https://api.infinum.academy/api/"
     var episodeId: String?
     var commentsArray: [Comment] = [Comment]()
 
@@ -48,13 +48,12 @@ class CommentsViewController: UIViewController {
         
         commentFieldWrapper.layer.cornerRadius = 22
         commentFieldWrapper.layer.masksToBounds = true
-        commentFieldWrapper.layer.shouldRasterize = true
         commentFieldWrapper.layer.borderWidth = 1.0
         commentFieldWrapper.layer.borderColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 237.0/255.0, alpha: 1.0).cgColor
     }
     
     func fetchComments() {
-        let url = "\(baseUrl)\(episodeId!)/comments"
+        let url = "\(baseUrl)episodes/\(episodeId!)/comments"
 
         Alamofire.request(
                 url,
@@ -79,8 +78,20 @@ class CommentsViewController: UIViewController {
     }
     
     @IBAction func sendComment(_ sender: UIButton) {
+        let commentsUrl = "\(baseUrl)comments"
         let comment = commentTextField.text!
-        print("Comment is: \(comment)")
+        let userEmail = UserDefaults.standard.string(forKey: "userEmail")!
+        
+        let requestParameters: Parameters = ["episodeId" : episodeId!, "text" : comment]
+        
+        print("These are request parameters: \(requestParameters)")
+        
+        Alamofire.request(commentsUrl, method: .post, parameters: requestParameters, encoding: JSONEncoding.default).responseJSON { (response) in
+            let responseCode = response.response?.statusCode
+            print(responseCode!)
+            print(response.response!)
+            print(response.result.value!)
+        }
     }
 }
 
